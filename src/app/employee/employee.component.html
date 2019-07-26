@@ -1,0 +1,42 @@
+<mat-toolbar color='primary'>
+  <mat-toolbar-row>
+    <a style="color:red">Home</a>
+    <span class='spacer'></span>
+    <button mat-button routerLink="employee">Employee List</button>
+    <button mat-button routerLink="employTickets">Employee Tickets </button>
+  </mat-toolbar-row>
+ </mat-toolbar>
+ <router-outlet></router-outlet>
+  <div class='container'>
+  <h3 style="text-align: center">Employee Details</h3>
+  <div *ngIf='allEmp'>
+    <table class="table table-bordered">
+      <tr>
+        <th>Id</th>
+        <th>Company Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor='let employ of allEmp'>
+        <td>{{employ.id}}</td>
+        <td>{{employ.companyId}}</td>
+        <td>{{employ.firstName}}</td>
+        <td>{{employ.lastName}}</td>
+        <td>{{employ.email}}</td>
+        <td>{{employ.gender}}</td>
+        <td>{{employ.dob}}</td>
+        <td><i class="material-icons" [routerLink]="['/editEmployee',employ.id]">edit</i>
+        </td>
+        <td><i class="material-icons" (click)="delEmp(employ.id)">
+            delete
+          </i>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

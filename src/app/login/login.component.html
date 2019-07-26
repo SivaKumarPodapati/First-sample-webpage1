@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <span>LOGIN</span>
+</mat-toolbar>
+<mat-card class="my-card">
+  <mat-card-content>
+    <form class="my-form" [formGroup]="form" #loginform="ngForm" (ngSubmit)="login(loginform.value)">
+     <mat-form-field class="full-width">
+       <mat-label>Email</mat-label>
+       <input matInput placeholder="Email" formControlName="email"  name="email">
+       </mat-form-field>
+     <mat-form-field class="full-width" required>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" name="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+       </mat-form-field>
+      <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="loginform.invalid">Login</button>
+         </mat-card-actions>
+    </form>
+  </mat-card-content>
+
+</mat-card>

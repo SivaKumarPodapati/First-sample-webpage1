@@ -1,0 +1,53 @@
+<!-- <div class="container">
+<h4>Select Tenants</h4>
+<mat-form-field>
+  <mat-label>Tenants</mat-label>
+  <select>
+    <option value="tenant1" (click)="tenantDetails()">Tenant1</option>
+    <option value="tenant2">Tenant2</option>
+    <option value="tenant3">Tenant3</option>
+    <option value="tenant4">Tenant4</option>
+    <option value="tenant5">Tenant5</option>
+    <option value="tenant6">Tenant6</option>
+  </select>
+</mat-form-field>
+</div> -->
+
+<div class="container">
+<mat-form-field>
+  <mat-label>Select an option</mat-label>
+  <mat-select  [(value)]="selected" (click)='tenantDetails(selected)'>
+    <mat-option>None</mat-option>
+    <mat-option value="T1Rep">Tenant 1 </mat-option>
+    <mat-option value="T2Rep">Tenant 2</mat-option>
+    <mat-option value="T3Rep">Tenant 3</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p>You selected: {{selected}}</p>
+<mat-spinner *ngIf='showSpinner'></mat-spinner>
+
+<div *ngFor="let tent of tenantData | paginate: { itemsPerPage: 1, currentPage: p }; ">
+  <table class="table table-bordered">
+    <tr>
+      <th>Issue Id</th>
+      <th>Date and Time</th>
+      <th>Issue Type</th>
+      <th>Message</th>
+      <th>Message Type</th>
+      <th>Report Name</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>{{tent.IssueID}}</td>
+      <td>tent[CreatedDate&Time(UTC)]</td>
+       <td>{{tent.IssueType}}</td>
+      <td>{{tent.Message}}</td>
+      <td>{{tent.MessageType}}</td>
+      <td>{{tent.RepName}}</td>
+      <td>{{tent.Status}}</td>
+    </tr>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
